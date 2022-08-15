@@ -1,0 +1,29 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Query {
+    "List multiple incomes."
+    incomes: [Income!]! @paginate(defaultCount: 10)
+}
+
+type Mutation {
+    createIncome(amount:Int!): Income! @create
+    updateIncome(id:ID!,amount:Int!): Income! @update
+    deleteIncome(id:ID!): Income! @delete
+
+}
+
+
+"Income Model"
+type Income {
+    "Unique primary key."
+    id: ID!
+
+    "Amount of income"
+    amount: String!
+
+    "When the income was created."
+    created_at: DateTime!
+
+    "When the income was last updated."
+    updated_at: DateTime!
+}
