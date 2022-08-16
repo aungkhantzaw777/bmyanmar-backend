@@ -6,9 +6,9 @@ type Query {
 }
 
 type Mutation {
-    createIncome(amount:Int!): WishList! @create
-    updateIncome(id:ID!,amount:Int!): WishList! @update
-    deleteIncome(id:ID!): WishList! @delete
+    createWishList(name:String!,price:Int!): WishList! @create
+    updateWishList(id:ID!,price:Int!, name: String!): WishList! @update
+    deleteWishList(id:ID!): WishList! @delete
 }
 
 
