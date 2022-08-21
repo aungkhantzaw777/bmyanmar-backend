@@ -41,7 +41,7 @@ class IncomePolicy
      */
     public function create(User $user)
     {
-        //
+        return 'work';
     }
 
     /**

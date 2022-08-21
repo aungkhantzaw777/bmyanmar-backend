@@ -15,7 +15,7 @@ class WishListController extends Controller
      */
     public function index()
     {
-        //
+        return WishList::latest()->paginate(10);
     }
 
     /**
@@ -36,7 +36,11 @@ class WishListController extends Controller
      */
     public function store(StoreWishListRequest $request)
     {
-        //
+        $wishlist = WishList::create([
+            'name' => $request->name,
+            'price' => $request->price, 
+        ]);
+        return $wishlist;
     }
 
     /**
@@ -47,7 +51,9 @@ class WishListController extends Controller
      */
     public function show(WishList $wishList)
     {
-        //
+        $id = request()->id;
+        $wishlist = WishList::findorfail($id);
+        return $wishlist;
     }
 
     /**
@@ -58,7 +64,7 @@ class WishListController extends Controller
      */
     public function edit(WishList $wishList)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +76,15 @@ class WishListController extends Controller
      */
     public function update(UpdateWishListRequest $request, WishList $wishList)
     {
-        //
+        $id = request()->id;
+        $wishlist = WishList::findorfail($id);
+        $name = request()->name;
+        $price = (int)request()->price;
+        $wishlist->update([
+            'name' => $name,
+            'price' => $price
+        ]);
+        return $wishlist;
     }
 
     /**
@@ -80,7 +94,11 @@ class WishListController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(WishList $wishList)
-    {
-        //
+    { 
+        // $wishList->delete();
+        $id = request()->id;
+        $wl = WishList::findorfail($id);
+        $wl->delete();
+        return $wl;
     }
 }

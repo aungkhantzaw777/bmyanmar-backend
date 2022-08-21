@@ -15,7 +15,8 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        //
+        $income = Income::latest()->paginate(10);
+        return $income;
     }
 
     /**
@@ -25,7 +26,7 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +37,19 @@ class IncomeController extends Controller
      */
     public function store(StoreIncomeRequest $request)
     {
-        //
+        $incomeQry = Income::all();
+        $income = null;
+        if(sizeof($incomeQry) == 0) {
+            $income = Income::create([
+                'amount' => $request->amount
+            ]);
+        }else {
+            $income = Income::latest()->limit(1)->update([
+                'amount' => $request->amount
+            ]);
+        }
+        
+        return $income;
     }
 
     /**
