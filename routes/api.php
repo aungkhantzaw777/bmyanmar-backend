@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\IncomeController;
-use App\Http\Controllers\WishListController;
+use App\Http\Controllers\{WishListController, ManageIncomeController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +25,13 @@ Route::post('/incomes/create', [IncomeController::class, 'store']);
 Route::post('/incomes/delete', [IncomeController::class, 'delete']);
 Route::post('/incomes/update', [IncomeController::class, 'update']);
 
-// token
+// wishlist
 Route::get('/wishlist', [WishListController::class, 'index']);
 Route::get('/wishlist/show/{id}', [WishListController::class, 'show']);
 Route::post('/wishlist/create', [WishListController::class, 'store']);
 Route::delete('/wishlist/delete/{id}', [WishListController::class, 'destroy']);
 Route::patch('/wishlist/update/{id}', [WishListController::class, 'update']);
+
+// manageIncome
+Route::post('/manageIncome', [ManageIncomeController::class, 'store']);
+Route::get('/manageIncome', [ManageIncomeController::class, 'index']);

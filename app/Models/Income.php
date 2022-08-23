@@ -13,6 +13,6 @@ class Income extends Model
     protected $guarded = [];
 
     public function wishlists() {
-        return $this->belongsToMany(WishList::class, 'manage_income', 'income_id', 'wishlist_id');
+        return $this->belongsToMany(WishList::class, 'manage_income', 'income_id', 'wishlist_id')->withPivot('date');
     }
 }
